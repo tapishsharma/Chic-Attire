@@ -3,6 +3,8 @@ import {Link} from 'react-router-dom';
 import './header.styles.scss';
 import logo from '../../assets/logo.png';
 import {auth} from '../../firebase/firebase.utils'
+import {connect} from 'react-redux';
+
 const Header=({currentUser})=>(
 <div className="header">
 
@@ -32,4 +34,8 @@ const Header=({currentUser})=>(
 </div>
 
 )
-export default Header;
+const mapStateToProps=state=>({
+  currentUser:state.user.currentUser
+})
+//connect is a function that takes a function as an argument and returns a function that takes a component as an argument and returns a component that has access to the state and the dispatch function of the store , it is higher order component
+export default connect(mapStateToProps)(Header);
